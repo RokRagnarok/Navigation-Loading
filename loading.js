@@ -1,0 +1,31 @@
+import {View, ActivityIndicator} from 'react';
+import React, {useState, useEffect} from 'react';
+import styles from './styles';
+
+
+const loading = (Wrapper) =>{
+    
+    return function loadingWrapper (props) {
+          const[loading, setLoading] = useState(true);
+          useEffect (() =>{
+        setTimeout(() => {
+           setLoading(false);
+        },1000);
+
+     }, []);
+          if (loading)
+            {
+                return(
+                    <View style = {styles.container}>
+                        <ActivityIndicator size="large"/>
+                    </View>
+                );
+                }else {
+                    return <Wrapper {...props} />;
+                }
+        }
+
+    
+}
+
+export default loading;
